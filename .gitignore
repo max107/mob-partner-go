@@ -1,4 +1,4 @@
-bin/server
+bin/*server
 .DS_Store
 .idea
 *.log
