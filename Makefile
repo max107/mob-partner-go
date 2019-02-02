@@ -1,3 +1,5 @@
+UNAME_S := $(shell uname -s)
+
 all: build
 
 .PHONY build:
@@ -7,10 +9,14 @@ build:
 
 .PHONY server:
 server: build
-	UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
-        ./bin/linux_server
+	./bin/linux_server ./config.json
     endif
     ifeq ($(UNAME_S),Darwin)
-        ./bin/mac_server
+	./bin/mac_server ./config.json
     endif
+
+.PHONY deploy:
+deploy: build
+	rsync -arcvp ./bin/linux_server user@test-target:/home/user/go/
+	ssh user@test-target "sudo systemctl restart goserver"

@@ -4,10 +4,15 @@ import (
 	"os"
 	"io/ioutil"
 	"encoding/json"
+	"github.com/pkg/errors"
 )
 
 func main() {
-	jsonConfig, err := os.Open("config.json")
+	if len(os.Args) < 2 {
+		errors.New("Missing config file path")
+	}
+
+	jsonConfig, err := os.Open(os.Args[1])
 	if err != nil {
 		panic(err)
 	}
