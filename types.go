@@ -9,10 +9,10 @@ type AppConfig struct {
 }
 
 type Meta struct {
-	Package string   `json:"package"`
-	ID      uint64   `json:"id"`
-	Version uint64   `json:"version"`
-	Extras  []string `json:"extras"`
+	Package string `json:"package"`
+	ID      uint64 `json:"id"`
+	Version uint64 `json:"version"`
+	Extras  JSON   `db:"type:json" json:"extras,omitempty"`
 }
 
 type ModuleRequest struct {
@@ -24,6 +24,7 @@ type Module struct {
 	Data     []byte `json:"data"`
 	Version  uint64 `json:"version"`
 	Package  string `json:"package"`
+	Extras   JSON   `sql:"type:json" json:"extras,omitempty"`
 	IsActive bool   `json:"is_active" db:"is_active"`
 	ID       uint64 `json:"id"`
 }

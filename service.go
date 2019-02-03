@@ -114,7 +114,7 @@ func (s *Service) createResponseFromModule(m Module) ModuleRequest {
 			ID:      m.ID,
 			Version: m.Version,
 			Package: m.Package,
-			Extras:  []string{"hello", "world"},
+			Extras:  m.Extras,
 		},
 	}
 }
